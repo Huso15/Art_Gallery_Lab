@@ -10,6 +10,8 @@ public class Artwork {
         this.price = price;
     }
 
+
+
     public String getTitle() {
         return title;
     }
@@ -18,7 +20,7 @@ public class Artwork {
         return artist;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 }
