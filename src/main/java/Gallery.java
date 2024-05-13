@@ -51,3 +51,4 @@ public class Gallery {
 //        this.stock = new ArrayList<>();
 //    }
 
+// Setters comment for new commit - trash code
