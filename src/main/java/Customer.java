@@ -15,7 +15,8 @@ public class Customer {
         return wallet;
     }
 
-    public void deductFromWallet(double amount) {
+    public void pay(double amount){
         wallet -= amount;
     }
+
 }

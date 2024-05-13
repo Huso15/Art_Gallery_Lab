@@ -24,4 +24,5 @@ public class ArtworkTest {
         Artwork artwork = new Artwork("Utopia", artist, 500);
         assertEquals(500, artwork.getPrice());
     }
+
 }

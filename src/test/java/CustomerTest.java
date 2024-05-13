@@ -13,7 +13,7 @@ public class CustomerTest {
 
     @Test
     public void hasName() {
-        assertThat(customer.getName()).isEqualTo("Huso");
+        assertThat(customer.getName()).isEqualTo("John");
     }
 
     @Test
@@ -22,8 +22,9 @@ public class CustomerTest {
     }
 
     @Test
-    public void testDeductFromWallet() {
-        customer.deductFromWallet(500.0);
-        assertEquals(500.0, customer.getWallet());
+    public void testPay() {
+        Customer customer = new Customer("John", 1000);
+        customer.pay(500);
+        assertEquals(500, customer.getWallet());
     }
 }

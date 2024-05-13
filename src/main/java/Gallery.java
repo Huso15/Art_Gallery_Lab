@@ -6,9 +6,10 @@ public class Gallery {
     private ArrayList<Artwork> stock;
     private int till;
 
+
     public Gallery(String name, int till) {
         this.name = name;
-        this.till = 1;
+        this.till = till;
         this.stock = new ArrayList<>();
     }
 
@@ -35,10 +36,7 @@ public class Gallery {
         this.till = amount;
     }
 
-    public String getSize() {
-        return Integer.toString(stock.size());
 
-    }
 
     public ArrayList<Artwork> getStock() {
         return stock;
