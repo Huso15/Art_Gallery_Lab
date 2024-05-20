@@ -1,38 +1,53 @@
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class GalleryTest {
 
-    private Gallery gallery;
-
-    @Before
-    public void setUp() {
-        gallery = new Gallery("Test Gallery", 1); // Assuming initial till amount is 1000
-    }
-
-    @Test
-    public void testGetName() {
-        assertEquals("Test Gallery", gallery.getName());
-    }
-
-    @Test
-    public void testGetTill() {
-        assertEquals(1, gallery.getTill());
-    }
-
-    @Test
-    public void testSetName() {
-        gallery.setName("New Gallery Name");
-        assertEquals("New Gallery Name", gallery.getName());
-    }
-
-    @Test
-    public void testSetTill() {
-        gallery.setTill(2000);
-        assertEquals(2000, gallery.getTill());
-    }
-
+    Gallery gallery;
+    Artist huncho;
+    Artist chunkz;
+    Artwork utopia;
+    Artwork landlock;
+    Customer customer;
 }
+
+@BeforeEach
+public void setUp(){
+    gallery = new Gallery("The Auditorium");
+    huncho = new Artist("Huncho");
+    utopia = new Artwork("Utopia", huncho, 50);
+    chunkz = new Artist("Chunkz");
+    landlock = new Artwork("Landlock", chunkz, 200);
+    gallery.addArtwork(utopia);
+    gallery.addArtwork(landlock);
+    customer = new Customer("Zuhair Khan", 500);
+}
+
+@Test
+public void galleryIsAbleToSellArt(){
+    gallery.sellArtwork(customer, flowersInAVase);
+    assertThat(gallery.artworkCount()).isEqualTo(1); // check no. of artwork has reduced by 1
+    assertThat(gallery.getTill()).isEqualTo(50); // check gallery till is up to 50 - price of artwork when till set to 0
+    assertThat(customer.getWallet()).isEqualTo(450); // check customer wallet has reduced to by 50
+    assertThat(customer.getArtworkCount()).isEqualTo(1); //check customer artwork count has increased by 1
+}
+
+
+@Test
+public void canCalculateArtValue(){
+    int result = gallery.calculateArtworkValue();
+    assertThat(result).isEqualTo(250);
+}
+
+@Test
+public void hasName(){
+    assertThat(gallery.getName()).isEqualTo("The Auditorium");
+}
+
+@Test
+public void tillStartsAtZero(){
+    assertThat(gallery.getTill()).isEqualTo(0);
+}
+
